@@ -1,0 +1,20 @@
+{
+  "name": "ระบบขออัตรากำลังตามแผน (IMR)",
+  "short_name": "ระบบขออัตรากำลัง",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1565C0",
+  "icons": [
+    {
+      "src": "AEKMJ.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "AEKMJ.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
