@@ -4,28 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ระบบขออัตรากำลัง</title>
-    <!-- เชื่อมโยง Manifest เพื่อสร้างไอคอนลง Desktop -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="AEKMJ.png">
+
+    <!-- เชื่อมโยง Manifest และไอคอนเวอร์ชัน ?v=2 เพื่อบังคับล้างแคชเก่า -->
+    <link rel="manifest" href="manifest.json?v=2">
+    <link rel="icon" type="image/png" href="AEKMJ.png?v=2">
+    <link rel="apple-touch-icon" href="AEKMJ.png?v=2">
     <meta name="theme-color" content="#1565C0">
+
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #ffffff; }
-        iframe { width: 100%; height: 100%; border: none; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
-    <!-- ดึงเว็บแอป Google Apps Script มาแสดงแบบเต็มจอ -->
-    <!-- อนุญาตให้เปิด Popup ดูไฟล์ PDF/ใบลาออกได้ตามปกติ -->
-    <iframe src="https://script.google.com/a/macros/aek.co.th/s/AKfycbxlZtNRNumltyW55yTrzyWYVUxLupyXoYXle2pco8HppxF2JiBwDeJ5c771Cv-qNWgu/exec" 
-            allow="fullscreen" 
+    <!-- ดึงเว็บแอป Google Apps Script ของบริษัทฯ มาแสดงแบบเต็มหน้าจอ -->
+    <!-- เปิดสิทธิ์ allow-popups เพื่อให้อ่านหรือดาวน์โหลดไฟล์แนบใน Google Drive ได้ตามปกติ -->
+    <iframe src="https://script.google.com/a/macros/aek.co.th/s/AKfycbxlZtNRNumltyW55yTrzyWYVUxLupyXoYXle2pco8HppxF2JiBwDeJ5c771Cv-qNWgu/exec"
+            allow="fullscreen"
             sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox">
     </iframe>
 
     <script>
-        // จดทะเบียน Service Worker เพื่อบังคับให้เบราว์เซอร์แสดงปุ่ม "ติดตั้งแอป"
+        // จดทะเบียน Service Worker เวอร์ชัน ?v=2 เพื่ออัปเดตตัวติดตั้งแอปทันที
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Reg Failed:', err));
+                navigator.serviceWorker.register('sw.js?v=2')
+                    .then(reg => console.log('Service Worker พร้อมทำงาน:', reg.scope))
+                    .catch(err => console.log('Service Worker แจ้งเตือน:', err));
             });
         }
     </script>
